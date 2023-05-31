@@ -1,8 +1,13 @@
 package Pets;
 
-import BaseClass.Pet;
+import java.time.LocalDate;
 
-public class Cat extends Pet {
+import BaseClass.Pet;
+import InterfaceClass.Grooming;
+import InterfaceClass.SoundProducing;
+import InterfaceClass.VeterinaryCare;
+
+public class Cat extends Pet implements SoundProducing, Grooming, VeterinaryCare {
 	private String furColor;
 	private boolean isIndoor;
 
@@ -30,7 +35,7 @@ public class Cat extends Pet {
 		isIndoor = indoor;
 	}
 
-	// Additional methods specific to cats
+	@Override
 	public void feed() {
 		// TODO Auto-generated method stub
 
@@ -43,8 +48,23 @@ public class Cat extends Pet {
 	}
 
 	@Override
+	public void makeSound() {
+	System.out.println(getName()+" is Meowing");
+
+
+	}
+
+	@Override
+	public void vetCare() {
+		LocalDate myObj = LocalDate.now();
+		System.out.println("vet care appointment on " + myObj);
+
+
+	}
+
+	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		System.out.println(getName()+" is playing");
 
 	}
 }

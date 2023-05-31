@@ -1,7 +1,13 @@
 package Pets;
-import BaseClass.Pet;
 
-public class Fish extends Pet {
+import java.time.LocalTime;
+
+import BaseClass.Pet;
+import InterfaceClass.Feeding;
+import InterfaceClass.SoundProducing;
+import InterfaceClass.Swimmable;
+
+public class Fish extends Pet implements Feeding, Swimmable,SoundProducing {
 	private String species;
 	private String waterType;
 
@@ -29,20 +35,28 @@ public class Fish extends Pet {
 		this.waterType = waterType;
 	}
 
-	public void feed() {
-		// TODO Auto-generated method stub
+	@Override
+	public void swim() {
+		System.out.println(getName() + " is swimming");
 
 	}
 
 	@Override
-	public void groom() {
-		// TODO Auto-generated method stub
+	public void feed() {
+		LocalTime myObj = LocalTime.now();
+		System.out.println(getName() + " fed at " + myObj);
 
 	}
 
 	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		System.out.println(getName() + " is playing");
 
+	}
+
+	@Override
+	public void makeSound() {
+		System.out.println("Fish doesn't produce any sound");
+		
 	}
 }

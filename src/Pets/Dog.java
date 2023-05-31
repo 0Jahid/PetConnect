@@ -1,8 +1,13 @@
 package Pets;
 
-import BaseClass.Pet;
+import java.time.LocalDate;
 
-public class Dog extends Pet {
+import BaseClass.Pet;
+import InterfaceClass.Grooming;
+import InterfaceClass.SoundProducing;
+import InterfaceClass.Training;
+
+public class Dog extends Pet implements SoundProducing, Grooming, Training {
 	private String size;
 	private String coatColor;
 
@@ -43,8 +48,21 @@ public class Dog extends Pet {
 	}
 
 	@Override
+	public void makeSound() {
+		System.out.println(getName() + " is burking");
+
+	}
+
+	@Override
+	public void train() {
+		LocalDate temp = LocalDate.now();
+		System.out.println(getBreed() + " trained on" + temp);
+
+	}
+
+	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		System.out.println(getName() + " is playing");
 
 	}
 

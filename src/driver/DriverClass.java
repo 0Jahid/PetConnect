@@ -2,6 +2,7 @@ package driver;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.Scanner;
 
 import BaseClass.Pet;
 import Pets.Cat;
@@ -11,11 +12,34 @@ import Pets.Fish;
 public class DriverClass {
 
 	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
 
 		Dog dog = new Dog("Buddy", "Lavendor", 5, 100.0, "Big", "Long");
 		Dog dog2 = new Dog("Buddy", "Lavendor", 5, 100.0, "Big", "Long");
 
 		addPetToBinaryFile(dog2);
+
+		int input1 = 10;
+		do {
+			System.out.println("Please select: ");
+			System.out.println("1. Admin");
+			System.out.println("2. Customer");
+			System.out.println("0. Exit");
+			input1 = input.nextInt();
+			switch (input1) {
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+
+			default:
+				System.out.println("Please enter correct value");
+				break;
+			}
+
+		} while (input1 != 0);
 
 	}
 
@@ -37,8 +61,5 @@ public class DriverClass {
 			System.out.println("An error occurred while adding Dog" + e.getMessage());
 		}
 	}
-
-
-	
 
 }

@@ -9,6 +9,7 @@ public class Customer {
 	private String name;
 	private String address;
 	private String phoneNumber;
+	private String password;
 	private List<Pet> purchaseHistory;
 	private int loyaltyPoints;
 	private double balance;
@@ -44,6 +45,12 @@ public class Customer {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<Pet> getPurchaseHistory() {

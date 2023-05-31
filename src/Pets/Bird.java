@@ -1,8 +1,11 @@
 package Pets;
 
-import BaseClass.Pet;
+import java.time.LocalTime;
 
-public class Bird extends Pet {
+import BaseClass.Pet;
+import InterfaceClass.SoundProducing;
+
+public class Bird extends Pet implements SoundProducing {
 	private String species;
 	private boolean canFly;
 
@@ -31,20 +34,19 @@ public class Bird extends Pet {
 	}
 
 	public void feed() {
-		// TODO Auto-generated method stub
-
+		LocalTime tem = LocalTime.now();
+		System.out.println(getName() + " is fed at " + tem);
 	}
 
 	@Override
-	public void groom() {
-		// TODO Auto-generated method stub
+	public void makeSound() {
+		System.out.println(getName() + " is chirping");
 
 	}
 
 	@Override
 	public void play() {
-		// TODO Auto-generated method stub
+		System.out.println(getName() + " is playing ");
 
 	}
-	}
-
+}

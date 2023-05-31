@@ -50,6 +50,4 @@ abstract public class Pet {
 	abstract public void feed();
 
 	abstract public void play();
-
-	abstract public void groom();
 }
