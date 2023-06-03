@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Customer {
 	private String name;
+	private String username;
 	private String address;
 	private String phoneNumber;
 	private String password;
@@ -22,6 +23,21 @@ public class Customer {
 		this.loyaltyPoints = 0;
 		this.balance = 0.0;
 	}
+	
+
+	public Customer(String name, String username, String address, String phoneNumber, String password,
+			List<Pet> purchaseHistory, int loyaltyPoints, double balance) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.password = password;
+		this.purchaseHistory = purchaseHistory;
+		this.loyaltyPoints = loyaltyPoints;
+		this.balance = balance;
+	}
+
 
 	public String getName() {
 		return name;
@@ -46,9 +62,11 @@ public class Customer {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
