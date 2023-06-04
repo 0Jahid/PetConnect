@@ -33,6 +33,7 @@ public class main {
 			System.out.println("1. Admin");
 			System.out.println("2. Customer");
 			System.out.println("0. Exit");
+			
 			System.out.println("------------------------------------");
 			int option1 = input.nextInt();
 			input.nextLine();
@@ -116,7 +117,6 @@ public class main {
 					System.out.println("Not yet available");
 					break;
 				case 0:
-					isAdminLogedIn = false;
 					System.exit(0);
 				default:
 					break;
@@ -462,4 +462,38 @@ public class main {
 
 		System.out.println("Total Bill: $" + totalBill);
 	}
+	
+	//loading all pets details from the file and storing them in arrayList
+	public static void loadPetsFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+
+                String petType = parts[0];
+
+                Pet pet;
+                if (petType.equals("Bird")) {
+                    Bird bird = new Bird(parts[1], parts[2], Integer.parseInt(parts[3]), Double.parseDouble(parts[4]), parts[5], Boolean.parseBoolean(parts[6]));
+                    pet = bird;
+                } else if (petType.equals("Dog")) {
+                    Dog dog = new Dog(parts[1], parts[2], Integer.parseInt(parts[3]), Double.parseDouble(parts[4]), parts[5]);
+                    pet = dog;
+                } else if (petType.equals("Fish")) {
+                    Fish fish = new Fish(parts[1], parts[2], Integer.parseInt(parts[3]), Double.parseDouble(parts[4]), parts[5],parts[6]);
+                    pet = fish;
+                } else if (petType.equals("Cat")) {
+                    Cat cat = new Cat(parts[1], parts[2], Integer.parseInt(parts[3]), Double.parseDouble(parts[4]), parts[5]);
+                    pet = cat;
+                } else {
+                    continue;
+                }
+
+                petList.add(pet);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while loading pets from file.");
+        }
+    }
 }
+
