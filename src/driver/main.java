@@ -27,12 +27,15 @@ public class main {
 
 		while (true) {
 			// showing welcome menu to user and taking input
+			System.out.println("-------------PetConnect--------------");
 			System.out.println("Welcome!!!");
 			System.out.println("Please select a option ");
 			System.out.println("1. Admin");
 			System.out.println("2. Customer");
 			System.out.println("0. Exit");
+			System.out.println("------------------------------------");
 			int option1 = input.nextInt();
+			input.nextLine();
 			switch (option1) {
 			case 1:
 				adminLogIn();
@@ -47,6 +50,7 @@ public class main {
 					System.out.print("Enter your choice: ");
 					System.out.println("------------------------------------");
 					int choice = input.nextInt();
+					input.nextLine();
 
 					switch (choice) {
 					case 1:
@@ -88,7 +92,7 @@ public class main {
 		tem1 = input.next();
 		System.out.println("Password: ");
 		tem2 = input.next();
-		if (tem1 == AdminUserName && tem2 == AdminPassword) {
+		if (tem1.equals(AdminUserName) && tem2.equals(AdminPassword)) {
 			System.out.println("Login Successful");
 			boolean isAdminLogedIn = true;
 			while (isAdminLogedIn) {
@@ -100,16 +104,20 @@ public class main {
 				System.out.println("Enter a option:  ");
 				System.out.println("------------------------------------");
 				int adminOption = input.nextInt();
+				input.nextLine();
 				switch (adminOption) {
 				case 1:
 					addPet();
 					break;
 				case 2:
 					System.out.println("Not yet available");
+					break;
 				case 3:
 					System.out.println("Not yet available");
+					break;
 				case 0:
 					isAdminLogedIn = false;
+					System.exit(0);
 				default:
 					break;
 				}
@@ -144,7 +152,6 @@ public class main {
 
 		System.out.print("Enter username: ");
 		String username = input.nextLine();
-
 		System.out.print("Enter password: ");
 		String password = input.nextLine();
 
@@ -173,6 +180,7 @@ public class main {
 					System.out.println("Please enter a Option: ");
 					System.out.println("------------------------------------");
 					int temp = input.nextInt();
+					input.nextLine();
 					switch (temp) {
 					case 1:
 						viewAvailablePets();
@@ -185,6 +193,7 @@ public class main {
 						break;
 					case 0:
 						isLoggedIn = false;
+						System.exit(0);
 						break;
 					default:
 						break;
@@ -200,7 +209,7 @@ public class main {
 	}
 
 	public static void addPet() {
-		Scanner scanner = new Scanner(System.in);
+
 		System.out.println("-------------PetConnect--------------");
 		System.out.println("Add Pet :");
 		System.out.println("1. Bird");
@@ -209,8 +218,8 @@ public class main {
 		System.out.println("4. Cat");
 		System.out.print("Enter the option you want to add: ");
 		System.out.println("------------------------------------");
-		int option = scanner.nextInt();
-		scanner.nextLine();
+		int option = input.nextInt();
+		input.nextLine();
 
 		switch (option) {
 		case 1:
@@ -240,21 +249,21 @@ public class main {
 	}
 
 	public static Bird createBird() {
-		Scanner scanner = new Scanner(System.in);
+
 		System.out.print("Enter name: ");
-		String name = scanner.nextLine();
+		String name = input.nextLine();
 		System.out.print("Enter breed: ");
-		String breed = scanner.nextLine();
+		String breed = input.nextLine();
 		System.out.print("Enter age: ");
-		int age = scanner.nextInt();
+		int age = input.nextInt();
 		System.out.print("Enter price: ");
-		double price = scanner.nextDouble();
-		scanner.nextLine();
+		double price = input.nextDouble();
+		input.nextLine();
 		System.out.print("Enter species: ");
-		String species = scanner.nextLine();
+		String species = input.nextLine();
 		System.out.print("Can fly? (true/false): ");
-		boolean canFly = scanner.nextBoolean();
-		scanner.nextLine();
+		boolean canFly = input.nextBoolean();
+		input.nextLine();
 
 		return new Bird(name, breed, age, price, species, canFly);
 	}
