@@ -12,10 +12,10 @@ public class Cat extends Pet implements SoundProducing, Grooming, VeterinaryCare
 	private boolean isIndoor;
 
 	// Constructor
-	public Cat(String name, String breed, int age, double price, String furColor, boolean isIndoor) {
+	public Cat(String name, String breed, int age, double price, String furColor) {
 		super(name, breed, age, price);
 		this.furColor = furColor;
-		this.isIndoor = isIndoor;
+		
 	}
 
 	// Getters and Setters

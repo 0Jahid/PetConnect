@@ -12,9 +12,9 @@ public class Dog extends Pet implements SoundProducing, Grooming, Training {
 	private String coatColor;
 
 	// Constructor
-	public Dog(String name, String breed, int age, double price) {
+	public Dog(String name, String breed, int age, double price, String color) {
 		super(name, breed, age, price);
-
+		coatColor=color;
 	}
 
 	// Getters and Setters

@@ -5,15 +5,24 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.*;
 
+import BaseClass.Pet;
+import Pets.Bird;
 import Pets.Cat;
+import Pets.Dog;
 import Pets.Fish;
 
 public class main {
 	private static final String FILE_PATH = "users.txt";
+	private static final String PET_FILE_PATH = "pets.txt";
+	private static List<Pet> petList = new ArrayList<>();
 
 	public static void main(String[] args) {
+		
 		Scanner input = new Scanner(System.in);
 		while (true) {
 			System.out.println("Welcome!!!");
@@ -55,6 +64,7 @@ public class main {
 				System.exit(0);
 				break;
 			default:
+				System.out.println("Enter a valid option");
 				break;
 			}
 
@@ -75,6 +85,29 @@ public class main {
 		tem2 = input.next();
 		if (tem1 == AdminUserName && tem2 == AdminPassword) {
 			System.out.println("Login Successful");
+			boolean isAdminLogedIn = true;
+			while (isAdminLogedIn) {
+				System.out.println("1. Add pet to inventory: ");
+				System.out.println("2. Delete pet from inventory: ");
+				System.out.println("3. Update pet information: ");
+				System.out.println("0. Exit");
+				System.out.println("Enter a option:  ");
+				int adminOption = input.nextInt();
+				switch (adminOption) {
+				case 1:
+					addPet();
+					break;
+				case 2:
+					System.out.println("Not yet available");
+				case 3:
+					System.out.println("Not yet available");
+				case 0:
+					isAdminLogedIn = false;
+				default:
+					break;
+				}
+
+			}
 
 		} else {
 			System.out.println("Wrong Username or Password");
@@ -125,6 +158,9 @@ public class main {
 
 			if (isLoggedIn) {
 				System.out.println("Login successful!");
+				
+				
+				
 			} else {
 				System.out.println("Invalid username or password.");
 			}
@@ -132,163 +168,230 @@ public class main {
 			System.out.println("Error occurred during login.");
 		}
 	}
-	public static void addAnimalByAdmin() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Add Animal - Admin");
-        System.out.println("Which animal do you want to add?");
-        System.out.println("1. Bird");
-        System.out.println("2. Dog");
-        System.out.println("3. Fish");
-        System.out.println("4. Cat");
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume the remaining newline character
 
-        Animal animal = null;
-        String animalType = "";
+	public static void addPet() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Add Pet by Admin:");
+		System.out.println("1. Bird");
+		System.out.println("2. Dog");
+		System.out.println("3. Fish");
+		System.out.println("4. Cat");
+		System.out.print("Enter the option number for the pet type you want to add: ");
+		int option = scanner.nextInt();
+		scanner.nextLine();
 
-        switch (choice) {
-            case 1:
-                animal = createBird();
-                animalType = "Bird";
-                break;
-            case 2:
-                animal = createDog();
-                animalType = "Dog";
-                break;
-            case 3:
-                animal = createFish();
-                animalType = "Fish";
-                break;
-            case 4:
-                animal = createCat();
-                animalType = "Cat";
-                break;
-            default:
-                System.out.println("Invalid choice.");
-                return;
+		switch (option) {
+		case 1:
+			Bird bird = createBird();
+			petList.add(bird);
+			break;
+		case 2:
+			Dog dog = createDog();
+			petList.add(dog);
+			break;
+		case 3:
+			Fish fish = createFish();
+			petList.add(fish);
+			break;
+		case 4:
+			Cat cat = createCat();
+			petList.add(cat);
+			break;
+		default:
+			System.out.println("Invalid option. No pet added.");
+			return;
+		}
+
+		savePetsToFile();
+
+		System.out.println("Pet added successfully!");
+	}
+
+	public static Bird createBird() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter name: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter breed: ");
+		String breed = scanner.nextLine();
+		System.out.print("Enter age: ");
+		int age = scanner.nextInt();
+		System.out.print("Enter price: ");
+		double price = scanner.nextDouble();
+		scanner.nextLine();
+		System.out.print("Enter species: ");
+		String species = scanner.nextLine();
+		System.out.print("Can fly? (true/false): ");
+		boolean canFly = scanner.nextBoolean();
+		scanner.nextLine();
+
+		return new Bird(name, breed, age, price, species, canFly);
+	}
+
+	public static Dog createDog() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter name: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter breed: ");
+		String breed = scanner.nextLine();
+		System.out.print("Enter age: ");
+		int age = scanner.nextInt();
+		System.out.print("Enter price: ");
+		double price = scanner.nextDouble();
+		scanner.nextLine();
+		System.out.print("Enter color: ");
+		String color = scanner.nextLine();
+
+		return new Dog(name, breed, age, price, color);
+	}
+
+	public static Fish createFish() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter name: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter breed: ");
+		String breed = scanner.nextLine();
+		System.out.print("Enter age: ");
+		int age = scanner.nextInt();
+		System.out.print("Enter price: ");
+		double price = scanner.nextDouble();
+		scanner.nextLine();
+		System.out.print("Enter species: ");
+		String species = scanner.nextLine();
+		System.out.print("Enter water type: ");
+		String waterType = scanner.nextLine();
+
+		return new Fish(name, breed, age, price, species, waterType);
+	}
+
+	public static Cat createCat() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter name: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter breed: ");
+		String breed = scanner.nextLine();
+		System.out.print("Enter age: ");
+		int age = scanner.nextInt();
+		System.out.print("Enter price: ");
+		double price = scanner.nextDouble();
+		scanner.nextLine();
+		System.out.print("Enter color: ");
+		String color = scanner.nextLine();
+
+		return new Cat(name, breed, age, price, color);
+	}
+
+	public static void savePetsToFile() {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(PET_FILE_PATH))) {
+			for (Pet pet : petList) {
+				if (pet instanceof Bird) {
+					Bird bird = (Bird) pet;
+					writer.write("Bird");
+					writer.newLine();
+					writer.write("Name: " + bird.getName());
+					writer.newLine();
+					writer.write("Breed: " + bird.getBreed());
+					writer.newLine();
+					writer.write("Age: " + bird.getAge());
+					writer.newLine();
+					writer.write("Price: " + bird.getPrice());
+					writer.newLine();
+					writer.write("Species: " + bird.getSpecies());
+					writer.newLine();
+					writer.write("Can fly: " + bird.canFly());
+					writer.newLine();
+				} else if (pet instanceof Dog) {
+					Dog dog = (Dog) pet;
+					writer.write("Dog");
+					writer.newLine();
+					writer.write("Name: " + dog.getName());
+					writer.newLine();
+					writer.write("Breed: " + dog.getBreed());
+					writer.newLine();
+					writer.write("Age: " + dog.getAge());
+					writer.newLine();
+					writer.write("Price: " + dog.getPrice());
+					writer.newLine();
+					writer.write("Color: " + dog.getCoatColor());
+					writer.newLine();
+				} else if (pet instanceof Fish) {
+					Fish fish = (Fish) pet;
+					writer.write("Fish");
+					writer.newLine();
+					writer.write("Name: " + fish.getName());
+					writer.newLine();
+					writer.write("Breed: " + fish.getBreed());
+					writer.newLine();
+					writer.write("Age: " + fish.getAge());
+					writer.newLine();
+					writer.write("Price: " + fish.getPrice());
+					writer.newLine();
+					writer.write("Water type: " + fish.getWaterType());
+					writer.newLine();
+				} else if (pet instanceof Cat) {
+					Cat cat = (Cat) pet;
+					writer.write("Cat");
+					writer.newLine();
+					writer.write("Name: " + cat.getName());
+					writer.newLine();
+					writer.write("Breed: " + cat.getBreed());
+					writer.newLine();
+					writer.write("Age: " + cat.getAge());
+					writer.newLine();
+					writer.write("Price: " + cat.getPrice());
+					writer.newLine();
+					writer.write("Color: " + cat.getFurColor());
+					writer.newLine();
+				}
+
+				writer.newLine();
+			}
+		} catch (IOException e) {
+			System.out.println("An error occurred while writing to the file.");
+			e.printStackTrace();
+		}
+	}
+	public static void viewAvailablePets() {
+        System.out.println("Available Pets:");
+        for (Pet pet : petList) {
+            System.out.println("Name: " + pet.getName());
+            System.out.println("Breed: " + pet.getBreed());
+            System.out.println("Age: " + pet.getAge());
+            System.out.println("Price: " + pet.getPrice());
+            System.out.println("--------------------------");
         }
-
-        if (animal != null) {
-            saveAnimalToFile(animal, animalType);
-            System.out.println("The " + animalType + " has been added and saved to the file.");
-        } else {
-            System.out.println("Failed to create the " + animalType + ".");
-        }
     }
-
-    public static Bird createBird() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter bird details:");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Breed: ");
-        String breed = scanner.nextLine();
-        System.out.print("Age: ");
-        int age = scanner.nextInt();
-        System.out.print("Price: ");
-        double price = scanner.nextDouble();
-        scanner.nextLine(); // Consume the remaining newline character
-        System.out.print("Species: ");
-        String species = scanner.nextLine();
-        System.out.print("Can fly (true/false): ");
-        boolean canFly = scanner.nextBoolean();
-        scanner.nextLine(); // Consume the remaining newline character
-
-        return new Bird(name, breed, age, price, species, canFly);
-    }
-
-    public static Dog createDog() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter dog details:");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Breed: ");
-        String breed = scanner.nextLine();
-        System.out.print("Age: ");
-        int age = scanner.nextInt();
-        System.out.print("Price: ");
-        double price = scanner.nextDouble();
-        scanner.nextLine(); // Consume the remaining newline character
-        System.out.print("Color: ");
-        String color = scanner.nextLine();
-
-        return new Dog(name, breed, age, price, color);
-    }
-
-    public static Fish createFish() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter fish details:");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Breed: ");
-        String breed = scanner.nextLine();
-        System.out.print("Age: ");
-        int age = scanner.nextInt();
-        System.out.print("Price: ");
-        double price = scanner.nextDouble();
-        scanner.nextLine(); // Consume the remaining newline character
-        System.out.print("Color: ");
-        String color = scanner.nextLine();
-
-        return new Fish(name, breed, age, price, color);
-    }
-
-    public static Cat createCat() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter cat details:");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Breed: ");
-        String breed = scanner.nextLine();
-        System.out.print("Age: ");
-        int age = scanner.nextInt();
-        System.out.print("Price: ");
-        double price = scanner.nextDouble();
-        scanner.nextLine(); // Consume the remaining newline character
-        System.out.print("Color: ");
-        String color = scanner.nextLine();
-
-        return new Cat(name, breed, age, price, color);
-    }
-
-    public static void saveAnimalToFile(Animal animal, String animalType) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            writer.write("Animal Type: " + animalType);
-            writer.newLine();
-            writer.write("Name: " + animal.getName());
-            writer.newLine();
-            writer.write("Breed: " + animal.getBreed());
-            writer.newLine();
-            writer.write("Age: " + animal.getAge());
-            writer.newLine();
-            writer.write("Price: " + animal.getPrice());
-            writer.newLine();
-
-            if (animal instanceof Bird) {
-                Bird bird = (Bird) animal;
-                writer.write("Species: " + bird.getSpecies());
-                writer.newLine();
-                writer.write("Can fly: " + bird.canFly());
-                writer.newLine();
-            } else if (animal instanceof Dog) {
-                Dog dog = (Dog) animal;
-                writer.write("Color: " + dog.getColor());
-                writer.newLine();
-            } else if (animal instanceof Fish) {
-                Fish fish = (Fish) animal;
-                writer.write("Color: " + fish.getColor());
-                writer.newLine();
-            } else if (animal instanceof Cat) {
-                Cat cat = (Cat) animal;
-                writer.write("Color: " + cat.getColor());
-                writer.newLine();
-            }
-
-            writer.newLine();
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing to the file.");
-            e.printStackTrace();
-        }
-    }
+//	public static void loadPetsFromFile() {
+//        try (BufferedReader reader = new BufferedReader(new FileReader(PET_FILE_PATH))) {
+//            String line;
+//            Pet pet = null;
+//
+//            while ((line = reader.readLine()) != null) {
+//                if (line.equals("Bird")) {
+//                    pet = new Bird();
+//                } else if (line.equals("Dog")) {
+//                    pet = new Dog();
+//                } else if (line.equals("Fish")) {
+//                    pet = new Fish();
+//                } else if (line.equals("Cat")) {
+//                    pet = new Cat();
+//                } else if (line.startsWith("Name: ")) {
+//                    pet.setName(line.substring(6));
+//                } else if (line.startsWith("Breed: ")) {
+//                    pet.setBreed(line.substring(7));
+//                } else if (line.startsWith("Age: ")) {
+//                    pet.setAge(Integer.parseInt(line.substring(5)));
+//                } else if (line.startsWith("Price: ")) {
+//                    pet.setPrice(Double.parseDouble(line.substring(7)));
+//                } else if (line.startsWith("Species: ")) {
+//                    ((Bird) pet).setSpecies(line.substring(9));
+//                } else if (line.startsWith("Can fly: ")) {
+//                    ((Bird) pet).setCanFly(Boolean.parseBoolean(line.substring(9)));
+//                    petList.add(pet);
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println("An error occurred while reading the file.");
+//            e.printStackTrace();
+//        }
+//    }
 }
