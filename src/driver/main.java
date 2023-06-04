@@ -20,10 +20,10 @@ public class main {
 	private static final String FILE_PATH = "users.txt";
 	private static final String PET_FILE_PATH = "pets.txt";
 	private static List<Pet> petList = new ArrayList<>();
+	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
-		Scanner input = new Scanner(System.in);
+
 		while (true) {
 			System.out.println("Welcome!!!");
 			System.out.println("Please select a option ");
@@ -37,10 +37,12 @@ public class main {
 				break;
 			case 2:
 				while (true) {
+					System.out.println("-------------PetConnect--------------");
 					System.out.println("1. Register");
 					System.out.println("2. Login");
 					System.out.println("3. Exit");
 					System.out.print("Enter your choice: ");
+					System.out.println("------------------------------------");
 					int choice = input.nextInt();
 
 					switch (choice) {
@@ -87,11 +89,13 @@ public class main {
 			System.out.println("Login Successful");
 			boolean isAdminLogedIn = true;
 			while (isAdminLogedIn) {
+				System.out.println("-------------PetConnect--------------");
 				System.out.println("1. Add pet to inventory: ");
 				System.out.println("2. Delete pet from inventory: ");
 				System.out.println("3. Update pet information: ");
 				System.out.println("0. Exit");
 				System.out.println("Enter a option:  ");
+				System.out.println("------------------------------------");
 				int adminOption = input.nextInt();
 				switch (adminOption) {
 				case 1:
@@ -158,9 +162,30 @@ public class main {
 
 			if (isLoggedIn) {
 				System.out.println("Login successful!");
-				
-				
-				
+
+				while (isLoggedIn) {
+					System.out.println("-------------PetConnect--------------");
+					System.out.println("1.Show Pet list");
+					System.out.println("2.Add to cart");
+					System.out.println("3.Checkout");
+					System.out.println("0.Exit");
+					System.out.println("Please enter a Option: ");
+					System.out.println("------------------------------------");
+					int temp = input.nextInt();
+					switch (temp) {
+					case 1:
+						viewAvailablePets();
+						break;
+					case 2:
+						break;
+					case 0:
+						isLoggedIn = false;
+						break;
+					default:
+						break;
+					}
+				}
+
 			} else {
 				System.out.println("Invalid username or password.");
 			}
@@ -171,12 +196,14 @@ public class main {
 
 	public static void addPet() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Add Pet by Admin:");
+		System.out.println("-------------PetConnect--------------");
+		System.out.println("Add Pet :");
 		System.out.println("1. Bird");
 		System.out.println("2. Dog");
 		System.out.println("3. Fish");
 		System.out.println("4. Cat");
-		System.out.print("Enter the option number for the pet type you want to add: ");
+		System.out.print("Enter the option you want to add: ");
+		System.out.println("------------------------------------");
 		int option = scanner.nextInt();
 		scanner.nextLine();
 
@@ -350,16 +377,18 @@ public class main {
 			e.printStackTrace();
 		}
 	}
+
 	public static void viewAvailablePets() {
-        System.out.println("Available Pets:");
-        for (Pet pet : petList) {
-            System.out.println("Name: " + pet.getName());
-            System.out.println("Breed: " + pet.getBreed());
-            System.out.println("Age: " + pet.getAge());
-            System.out.println("Price: " + pet.getPrice());
-            System.out.println("--------------------------");
-        }
-    }
+		System.out.println("Available Pets:");
+		for (Pet pet : petList) {
+			System.out.println("------------------------------------");
+			System.out.println("Name: " + pet.getName());
+			System.out.println("Breed: " + pet.getBreed());
+			System.out.println("Age: " + pet.getAge());
+			System.out.println("Price: " + pet.getPrice());
+			System.out.println("------------------------------------");
+		}
+	}
 //	public static void loadPetsFromFile() {
 //        try (BufferedReader reader = new BufferedReader(new FileReader(PET_FILE_PATH))) {
 //            String line;
