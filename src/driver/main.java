@@ -26,6 +26,7 @@ public class main {
 	public static void main(String[] args) {
 
 		while (true) {
+			// showing welcome menu to user and taking input
 			System.out.println("Welcome!!!");
 			System.out.println("Please select a option ");
 			System.out.println("1. Admin");
@@ -38,6 +39,7 @@ public class main {
 				break;
 			case 2:
 				while (true) {
+					// menu for customer
 					System.out.println("-------------PetConnect--------------");
 					System.out.println("1. Register");
 					System.out.println("2. Login");
@@ -76,7 +78,7 @@ public class main {
 	}
 
 	private static void adminLogIn() {
-		Scanner input = new Scanner(System.in);
+//admin login function
 		System.out.println("Welcome to admin plane");
 		String AdminUserName = "Admin";
 		String AdminPassword = "Admin123";
@@ -121,12 +123,11 @@ public class main {
 
 	private static void registerUser() {
 
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Registration:");
 		System.out.print("Enter username: ");
-		String username = scanner.nextLine();
+		String username = input.nextLine();
 		System.out.print("Enter password: ");
-		String password = scanner.nextLine();
+		String password = input.nextLine();
 
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
 			writer.write(username + "," + password);
@@ -138,15 +139,14 @@ public class main {
 	}
 
 	private static void loginUser() {
-		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Login:");
 
 		System.out.print("Enter username: ");
-		String username = scanner.nextLine();
+		String username = input.nextLine();
 
 		System.out.print("Enter password: ");
-		String password = scanner.nextLine();
+		String password = input.nextLine();
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
 			String line;
@@ -260,54 +260,52 @@ public class main {
 	}
 
 	public static Dog createDog() {
-		Scanner scanner = new Scanner(System.in);
+
 		System.out.print("Enter name: ");
-		String name = scanner.nextLine();
+		String name = input.nextLine();
 		System.out.print("Enter breed: ");
-		String breed = scanner.nextLine();
+		String breed = input.nextLine();
 		System.out.print("Enter age: ");
-		int age = scanner.nextInt();
+		int age = input.nextInt();
 		System.out.print("Enter price: ");
-		double price = scanner.nextDouble();
-		scanner.nextLine();
+		double price = input.nextDouble();
+		input.nextLine();
 		System.out.print("Enter color: ");
-		String color = scanner.nextLine();
+		String color = input.nextLine();
 
 		return new Dog(name, breed, age, price, color);
 	}
 
 	public static Fish createFish() {
-		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter name: ");
-		String name = scanner.nextLine();
+		String name = input.nextLine();
 		System.out.print("Enter breed: ");
-		String breed = scanner.nextLine();
+		String breed = input.nextLine();
 		System.out.print("Enter age: ");
-		int age = scanner.nextInt();
+		int age = input.nextInt();
 		System.out.print("Enter price: ");
-		double price = scanner.nextDouble();
-		scanner.nextLine();
+		double price = input.nextDouble();
+		input.nextLine();
 		System.out.print("Enter species: ");
-		String species = scanner.nextLine();
+		String species = input.nextLine();
 		System.out.print("Enter water type: ");
-		String waterType = scanner.nextLine();
+		String waterType = input.nextLine();
 
 		return new Fish(name, breed, age, price, species, waterType);
 	}
 
 	public static Cat createCat() {
-		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter name: ");
-		String name = scanner.nextLine();
+		String name = input.nextLine();
 		System.out.print("Enter breed: ");
-		String breed = scanner.nextLine();
+		String breed = input.nextLine();
 		System.out.print("Enter age: ");
-		int age = scanner.nextInt();
+		int age = input.nextInt();
 		System.out.print("Enter price: ");
-		double price = scanner.nextDouble();
-		scanner.nextLine();
+		double price = input.nextDouble();
+		input.nextLine();
 		System.out.print("Enter color: ");
-		String color = scanner.nextLine();
+		String color = input.nextLine();
 
 		return new Cat(name, breed, age, price, color);
 	}
