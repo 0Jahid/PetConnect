@@ -20,6 +20,7 @@ public class main {
 	private static final String FILE_PATH = "users.txt";
 	private static final String PET_FILE_PATH = "pets.txt";
 	private static List<Pet> petList = new ArrayList<>();
+	private static List<Pet> userCart = new ArrayList<>();
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -177,6 +178,10 @@ public class main {
 						viewAvailablePets();
 						break;
 					case 2:
+						addToCart();
+						break;
+					case 3:
+						checkout();
 						break;
 					case 0:
 						isLoggedIn = false;
@@ -389,38 +394,65 @@ public class main {
 			System.out.println("------------------------------------");
 		}
 	}
-//	public static void loadPetsFromFile() {
-//        try (BufferedReader reader = new BufferedReader(new FileReader(PET_FILE_PATH))) {
-//            String line;
-//            Pet pet = null;
-//
-//            while ((line = reader.readLine()) != null) {
-//                if (line.equals("Bird")) {
-//                    pet = new Bird();
-//                } else if (line.equals("Dog")) {
-//                    pet = new Dog();
-//                } else if (line.equals("Fish")) {
-//                    pet = new Fish();
-//                } else if (line.equals("Cat")) {
-//                    pet = new Cat();
-//                } else if (line.startsWith("Name: ")) {
-//                    pet.setName(line.substring(6));
-//                } else if (line.startsWith("Breed: ")) {
-//                    pet.setBreed(line.substring(7));
-//                } else if (line.startsWith("Age: ")) {
-//                    pet.setAge(Integer.parseInt(line.substring(5)));
-//                } else if (line.startsWith("Price: ")) {
-//                    pet.setPrice(Double.parseDouble(line.substring(7)));
-//                } else if (line.startsWith("Species: ")) {
-//                    ((Bird) pet).setSpecies(line.substring(9));
-//                } else if (line.startsWith("Can fly: ")) {
-//                    ((Bird) pet).setCanFly(Boolean.parseBoolean(line.substring(9)));
-//                    petList.add(pet);
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("An error occurred while reading the file.");
-//            e.printStackTrace();
-//        }
-//    }
+	/*
+	 * public static void loadPetsFromFile() { try (BufferedReader reader = new
+	 * BufferedReader(new FileReader(PET_FILE_PATH))) { String line; Pet pet = null;
+	 * 
+	 * while ((line = reader.readLine()) != null) { if (line.equals("Bird")) { pet =
+	 * new Bird(); } else if (line.equals("Dog")) { pet = new Dog(); } else if
+	 * (line.equals("Fish")) { pet = new Fish(); } else if (line.equals("Cat")) {
+	 * pet = new Cat(); } else if (line.startsWith("Name: ")) {
+	 * pet.setName(line.substring(6)); } else if (line.startsWith("Breed: ")) {
+	 * pet.setBreed(line.substring(7)); } else if (line.startsWith("Age: ")) {
+	 * pet.setAge(Integer.parseInt(line.substring(5))); } else if
+	 * (line.startsWith("Price: ")) {
+	 * pet.setPrice(Double.parseDouble(line.substring(7))); } else if
+	 * (line.startsWith("Species: ")) { ((Bird) pet).setSpecies(line.substring(9));
+	 * } else if (line.startsWith("Can fly: ")) { ((Bird)
+	 * pet).setCanFly(Boolean.parseBoolean(line.substring(9))); petList.add(pet); }
+	 * } } catch (IOException e) {
+	 * System.out.println("An error occurred while reading the file.");
+	 * e.printStackTrace(); } }
+	 */
+
+	public static void addToCart() {
+		System.out.print("Enter the name of the pet you want to add to your cart: ");
+		String petName = input.nextLine();
+
+		Pet selectedPet = null;
+		for (Pet pet : petList) {
+			if (pet.getName().equalsIgnoreCase(petName)) {
+				selectedPet = pet;
+				break;
+			}
+		}
+
+		if (selectedPet != null) {
+			userCart.add(selectedPet);
+			System.out.println("Pet added to your cart successfully!");
+		} else {
+			System.out.println("Pet not found.");
+		}
+	}
+
+	public static void checkout() {
+		double totalBill = 0.0;
+
+		if (userCart.isEmpty()) {
+			System.out.println("Your cart is empty.");
+			return;
+		}
+
+		System.out.println("Items in Your Cart:");
+		for (Pet pet : userCart) {
+			System.out.println("Name: " + pet.getName());
+			System.out.println("Breed: " + pet.getBreed());
+			System.out.println("Age: " + pet.getAge());
+			System.out.println("Price: " + pet.getPrice());
+			System.out.println("--------------------------");
+			totalBill += pet.getPrice();
+		}
+
+		System.out.println("Total Bill: $" + totalBill);
+	}
 }
