@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package InterfaceClass;
 
 public interface Feeding {
