@@ -6,4 +6,5 @@
  *
  */
 module PetConnect {
+    requires rt;
 }
