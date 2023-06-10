@@ -17,7 +17,7 @@ import Pets.Dog;
 import Pets.Fish;
 
 public class main {
-	private static final String FILE_PATH = "users.txt";
+	public static final String FILE_PATH = "users.txt";
 	private static final String PET_FILE_PATH = "pets.txt";
 	private static List<Pet> petList = new ArrayList<>();
 	private static List<Pet> userCart = new ArrayList<>();

@@ -78,15 +78,6 @@ public class UserProfile extends JFrame {
         add(mainPanel);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                UserProfile userProfile = new UserProfile();
-                userProfile.setVisible(true);
-            }
-        });
-    }
 }
 
 class PetListingPage extends JFrame {
