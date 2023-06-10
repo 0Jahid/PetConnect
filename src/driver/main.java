@@ -23,6 +23,9 @@ public class main {
 	private static List<Pet> userCart = new ArrayList<>();
 	private static Scanner input = new Scanner(System.in);
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void main(String[] args) {
 
 		while (true) {

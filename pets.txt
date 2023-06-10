@@ -1,0 +1,7 @@
+Fish
+Name: Moli
+Breed: Moli
+Age: 1
+Price: 60.0
+Water type: fresh
+

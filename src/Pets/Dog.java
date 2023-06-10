@@ -1,5 +1,6 @@
 package Pets;
 
+import java.awt.Dimension;
 import java.time.LocalDate;
 
 import BaseClass.Pet;
@@ -18,9 +19,6 @@ public class Dog extends Pet implements SoundProducing, Grooming, Training {
 	}
 
 	// Getters and Setters
-	public String getSize() {
-		return size;
-	}
 
 	public void setSize(String size) {
 		this.size = size;

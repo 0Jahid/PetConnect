@@ -1,6 +1,6 @@
 package BaseClass;
 
-abstract public class Pet {
+abstract public class Pet extends javax.swing.JFrame {
 	private String name;
 	private String breed;
 	private int age;
