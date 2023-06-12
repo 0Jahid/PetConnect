@@ -41,18 +41,17 @@ public class AdminLoginPage extends JFrame {
 				String username = usernameField.getText();
 				String password = String.valueOf(passwordField.getPassword());
 
-				// Add your admin login validation logic here
+				
 
 				if (username.equals("Admin") && password.equals("Admin123")) {
 					dispose();
 					JOptionPane.showMessageDialog(null, "Login successful!");
-					// Add your admin page or functionality here
+					
 					new AdminDashboard();
 				} else {
 					JOptionPane.showMessageDialog(null, "Invalid username or password. Please try again.");
 				}
 
-				// Clear the fields
 				usernameField.setText("");
 				passwordField.setText("");
 			}

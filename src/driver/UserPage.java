@@ -120,6 +120,7 @@ class RegisterPage extends JFrame {
 		formPanel.add(passwordLabel);
 		formPanel.add(passwordField);
 
+	
 		JButton registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
 			@Override

@@ -38,7 +38,8 @@ public class WelcomePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Add your user button functionality here
-				JOptionPane.showMessageDialog(WelcomePage.this, "User button clicked!");
+				UserPage userpage = new UserPage();
+				userpage.show();
 			}
 		});
 
